@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Researcher Administration — Independent Reviewer Portal</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+  <header class="app-header">
+    <div class="header-inner">
+      <div class="header-titles">
+        <div class="institution">West Virginia University</div>
+        <div class="study-title">Researcher Administration Dashboard</div>
+        <div class="study-subtitle">Study: Independent Review of a Highway Pavement Friction Management Framework</div>
+      </div>
+      <div class="header-controls">
+        <button id="btnCreateReviewer" class="btn btn-gold" style="padding: 0.4rem 0.85rem; font-size: 0.85rem;">
+          + Invite New Reviewer
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <main class="main-wrapper">
+    <div class="card">
+      <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.5rem;">
+        <div>
+          <h2>Reviewer Status & Submissions</h2>
+          <p style="margin: 0; font-size: 0.9rem;">
+            Track reviewer progress and download cryptographic locked packages upon completion. Partial ratings are withheld during active reviews to maintain methodological integrity.
+          </p>
+        </div>
+        <button id="btnRefresh" class="btn btn-secondary">Refresh ↻</button>
+      </div>
+
+      <div style="overflow-x: auto;">
+        <table style="width: 100%; border-collapse: collapse; text-align: left; font-size: 0.9rem;">
+          <thead>
+            <tr style="border-bottom: 2px solid var(--wvu-blue); color: var(--wvu-blue);">
+              <th style="padding: 0.75rem 0.5rem;">Reviewer ID</th>
+              <th style="padding: 0.75rem 0.5rem;">Reviewer Name</th>
+              <th style="padding: 0.75rem 0.5rem;">Organization</th>
+              <th style="padding: 0.75rem 0.5rem;">Status</th>
+              <th style="padding: 0.75rem 0.5rem;">Progress</th>
+              <th style="padding: 0.75rem 0.5rem;">Flagged</th>
+              <th style="padding: 0.75rem 0.5rem;">Submitted</th>
+              <th style="padding: 0.75rem 0.5rem; text-align: right;">Reviewer Link / Package</th>
+            </tr>
+          </thead>
+          <tbody id="reviewerTableBody">
+            <tr>
+              <td colspan="8" style="padding: 2rem; text-align: center; color: var(--text-muted);">
+                Loading reviewer submissions...
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- Create / Invite Modal -->
+    <div id="inviteModal" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.5); z-index: 1000; align-items: center; justify-content: center;">
+      <div class="card" style="width: 500px; max-width: 90vw; margin: auto;">
+        <h3>Generate Independent Reviewer Link</h3>
+        <p style="font-size: 0.85rem; color: var(--text-muted);">
+          Each reviewer receives a private, secure URL that tracks their unique progress without requiring password creation.
+        </p>
+        <form id="inviteForm">
+          <div class="form-group">
+            <label for="invName">Reviewer Full Name</label>
+            <input type="text" id="invName" placeholder="e.g. Dr. John Doe">
+          </div>
+          <div class="form-group">
+            <label for="invOrg">Organization</label>
+            <input type="text" id="invOrg" placeholder="e.g. Virginia DOT / Virginia Tech">
+          </div>
+          <div class="form-group">
+            <label for="invEmail">Email</label>
+            <input type="email" id="invEmail" placeholder="e.g. jdoe@example.org">
+          </div>
+          <div style="display: flex; justify-content: flex-end; gap: 0.75rem; margin-top: 1.5rem;">
+            <button type="button" class="btn btn-secondary" onclick="closeInviteModal()">Cancel</button>
+            <button type="submit" class="btn btn-primary">Create & Copy Link</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </main>
+
+  <footer class="app-footer">
+    <div>
+      <strong>Research contact:</strong> Bilal Al-Oubaidi · <a href="mailto:bia00002@mix.wvu.edu">bia00002@mix.wvu.edu</a><br>
+      Ph.D. Student, Civil Engineering · West Virginia University
+    </div>
+  </footer>
+
+  <script src="admin.js"></script>
+</body>
+</html>

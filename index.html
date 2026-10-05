@@ -1,0 +1,411 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Independent Review of a Highway Pavement Friction Management Framework</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+  <!-- Main Header -->
+  <header class="app-header">
+    <div class="header-inner">
+      <div class="header-titles">
+        <div class="institution">West Virginia University</div>
+        <div class="study-title">Independent Review of a Highway Pavement Friction Management Framework</div>
+        <div class="study-subtitle">Independent Evidence Review</div>
+      </div>
+      <div class="header-controls">
+        <div id="saveIndicator" class="save-indicator saved">
+          <span class="icon">✓</span> <span class="text">Saved</span>
+        </div>
+        <button id="btnOpenCodebook" class="btn-codebook-toggle">
+          📖 Full Coding Guide
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Main App Wrapper -->
+  <main class="main-wrapper">
+
+    <!-- Screen 1: Welcome -->
+    <section id="screenWelcome" class="card screen-section">
+      <h2>Welcome — Thank You for Supporting This Research</h2>
+      <p>Thank you for contributing your time and professional judgment to this study.</p>
+      <p>Your independent review will help us evaluate whether the proposed pavement-friction management framework can be applied clearly and consistently by someone outside the research team. Your contribution directly supports the <strong>credibility, transparency, and methodological quality</strong> of the research.</p>
+      <p>You will review <strong>72 short cases</strong>, select one rating for each case, and provide a brief reason for your decision.</p>
+      <p>There are no expected answers. What matters most is your <strong>independent interpretation of the supplied evidence</strong>.</p>
+      <p><strong>We sincerely appreciate your time, expertise, and contribution.</strong></p>
+      <p>
+        <strong>Bilal Al-Oubaidi</strong><br>
+        Ph.D. Student, Civil Engineering<br>
+        West Virginia University
+      </p>
+
+      <div style="margin-top: 2rem;">
+        <button id="btnBeginReview" class="btn btn-primary btn-large">
+          Begin Independent Review →
+        </button>
+        <p style="margin-top: 0.75rem; font-size: 0.85rem; color: var(--text-muted);">
+          Your progress is saved automatically. You may complete the review on a phone, tablet, laptop, or desktop and return later using the same private link.
+        </p>
+      </div>
+    </section>
+
+    <!-- Screen 2: Reviewer Information -->
+    <section id="screenReviewerInfo" class="card screen-section" style="display: none;">
+      <h2>Reviewer Information</h2>
+      <p>Please provide your professional background information for the research record. Personal details remain logically separated from coded ratings.</p>
+
+      <form id="reviewerInfoForm">
+        <div class="form-group">
+          <label for="inputFullName">Full Name *</label>
+          <input type="text" id="inputFullName" required placeholder="e.g. Dr. Jane Smith">
+        </div>
+        <div class="form-group">
+          <label for="inputTitle">Professional Title / Position *</label>
+          <input type="text" id="inputTitle" required placeholder="e.g. Senior Materials Engineer / Professor">
+        </div>
+        <div class="form-group">
+          <label for="inputOrg">Organization *</label>
+          <input type="text" id="inputOrg" required placeholder="e.g. State DOT / University / Research Institute">
+        </div>
+        <div class="form-group">
+          <label for="inputEmail">Email Address *</label>
+          <input type="email" id="inputEmail" required placeholder="e.g. jsmith@example.edu">
+        </div>
+        <div class="form-group">
+          <label for="inputExpertise">Primary Area(s) of Expertise *</label>
+          <input type="text" id="inputExpertise" required placeholder="e.g. Pavement engineering, safety asset management, surface properties">
+        </div>
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
+          <div class="form-group">
+            <label for="inputExpYears">Years of Relevant Experience (Optional)</label>
+            <input type="text" id="inputExpYears" placeholder="e.g. 12">
+          </div>
+          <div class="form-group">
+            <label for="inputCountry">Country (Optional)</label>
+            <input type="text" id="inputCountry" placeholder="e.g. United States">
+          </div>
+        </div>
+
+        <div style="margin-top: 1.5rem; display: flex; justify-content: space-between;">
+          <button type="button" class="btn btn-secondary" onclick="app.showScreen('welcome')">← Back</button>
+          <button type="submit" class="btn btn-primary">Save & Continue to Declaration →</button>
+        </div>
+      </form>
+    </section>
+
+    <!-- Screen 3: Independence Declaration -->
+    <section id="screenDeclaration" class="card screen-section" style="display: none;">
+      <h2>Independence Declaration</h2>
+      <p>To ensure methodological validity and blinding, please confirm the following statements before coding begins:</p>
+
+      <div style="background: #f8fafc; border: 1px solid var(--border-color); padding: 1.5rem; border-radius: var(--radius-md); margin-bottom: 1.5rem;">
+        <ul style="list-style-type: none; display: flex; flex-direction: column; gap: 0.75rem;">
+          <li>✓ I have not seen the researcher's existing or reference ratings.</li>
+          <li>✓ I will use only the supplied evidence corpus for this review.</li>
+          <li>✓ I will complete the assessment independently and impartially.</li>
+          <li>✓ I will not seek or introduce outside evidence about agencies or past reviews.</li>
+          <li>✓ The submitted ratings and rationales represent solely my own professional judgment.</li>
+        </ul>
+      </div>
+
+      <div class="form-group">
+        <label class="checkbox-label" style="color: var(--wvu-blue);">
+          <input type="checkbox" id="checkDeclarationAgree" required style="width: auto; margin-right: 0.5rem;">
+          I hereby confirm and agree to the Independence Declaration above.
+        </label>
+      </div>
+
+      <div style="margin-top: 1.5rem; display: flex; justify-content: space-between;">
+        <button type="button" class="btn btn-secondary" onclick="app.showScreen('reviewerInfo')">← Back</button>
+        <button type="button" id="btnConfirmDeclaration" class="btn btn-primary">Continue to Coding Guide →</button>
+      </div>
+    </section>
+
+    <!-- Screen 4: Quick Coding Guide -->
+    <section id="screenQuickGuide" class="card screen-section" style="display: none;">
+      <h2>Quick Coding Guide</h2>
+      <p>Please review the four rating categories defined in the locked codebook. You will apply one rating to each case:</p>
+
+      <div class="rating-options-grid" style="grid-template-columns: 1fr 1fr; margin-bottom: 2rem;">
+        <div class="rating-btn" style="cursor: default;">
+          <div class="rating-score-badge">2 — Fully documented</div>
+          <div class="rating-score-desc">A fully documented, repeatable, auditable operational capability according to the locked codebook.</div>
+        </div>
+        <div class="rating-btn" style="cursor: default;">
+          <div class="rating-score-badge">1 — Partially documented</div>
+          <div class="rating-score-desc">Documented but partial, limited, or indirect evidence according to the locked codebook.</div>
+        </div>
+        <div class="rating-btn" style="cursor: default;">
+          <div class="rating-score-badge">0 — Explicitly documented absence/non-use</div>
+          <div class="rating-score-desc">Use only where the supplied evidence explicitly supports absence or non-use within the defined scope.</div>
+        </div>
+        <div class="rating-btn" style="cursor: default;">
+          <div class="rating-score-badge">NR — Not reported / not established</div>
+          <div class="rating-score-desc">The capability is not established in the supplied evidence.</div>
+        </div>
+      </div>
+
+      <div style="background-color: #fffbeb; border-left: 4px solid var(--wvu-gold); padding: 1rem; border-radius: var(--radius-sm); margin-bottom: 1.5rem;">
+        <strong style="color: #92400e;">Critical Rule: NR is not the same as 0.</strong>
+        <p style="margin: 0.25rem 0 0 0; font-size: 0.9rem; color: #92400e;">
+          Select <strong>0</strong> only when evidence explicitly describes non-use, discontinuation, or absence. Use <strong>NR</strong> when the evidence does not report or establish the capability.
+        </p>
+      </div>
+
+      <div style="display: flex; justify-content: space-between; align-items: center;">
+        <button type="button" class="btn btn-secondary" onclick="app.showScreen('declaration')">← Back</button>
+        <button type="button" id="btnStartCases" class="btn btn-primary">Start Reviewing Cases (1 of 72) →</button>
+      </div>
+    </section>
+
+    <!-- Screen 5: Case Review Interface (One case at a time) -->
+    <section id="screenCaseReview" class="screen-section" style="display: none;">
+      
+      <!-- Progress Bar & Menu Toggle -->
+      <div class="progress-container">
+        <span id="caseProgressText" class="progress-text">Case 1 of 72 · 0% complete</span>
+        <div class="progress-bar-track">
+          <div id="caseProgressBar" class="progress-bar-fill"></div>
+        </div>
+        <button id="btnOpenNavModal" class="cases-menu-toggle">All Cases ☰</button>
+      </div>
+
+      <!-- Case Header Card -->
+      <div class="case-header-panel">
+        <div class="case-meta-row">
+          <div class="case-meta-item">
+            <div class="meta-label">Current Case</div>
+            <div id="caseDisplayNum" class="meta-value">Case 1 of 72</div>
+          </div>
+          <div class="case-meta-item">
+            <div class="meta-label">Transportation Agency</div>
+            <div id="caseAgency" class="meta-value">—</div>
+          </div>
+          <div class="case-meta-item">
+            <div class="meta-label">Framework Domain</div>
+            <div id="caseDomain" class="meta-value">—</div>
+          </div>
+        </div>
+        <div class="domain-definition">
+          <strong>Domain Definition:</strong> <span id="caseDomainDef">—</span>
+        </div>
+      </div>
+
+      <!-- Evidence Panel Card -->
+      <div class="evidence-card">
+        <div class="evidence-header">
+          <span id="evidenceSourceTag" class="evidence-source-tag">Source ID: —</span>
+          <span id="evidenceLocatorHeader" style="font-size: 0.85rem; color: var(--text-muted);">Locator: —</span>
+        </div>
+        <div class="evidence-body" id="evidenceBody">Loading evidence excerpt...</div>
+        
+        <div class="evidence-meta-details">
+          <div><strong>Document:</strong> <span id="evidenceDocTitle">—</span></div>
+          <div><strong>Issuing Agency:</strong> <span id="evidenceIssuingOrg">—</span></div>
+          <div><strong>Version / Date:</strong> <span id="evidenceDate">—</span></div>
+          <div><strong>Citation Locator:</strong> <span id="evidenceLocatorDetails">—</span></div>
+        </div>
+
+        <div id="evidenceLimitationContainer" class="evidence-limitation-box" style="display: none;">
+          <strong>Source Limitation Note:</strong> <span id="evidenceLimitationText"></span>
+        </div>
+      </div>
+
+      <!-- Reviewer Decision Card -->
+      <div class="card">
+        <h3>Your Assessment</h3>
+        <p style="font-size: 0.9rem; color: var(--text-muted); margin-bottom: 1rem;">
+          Select the rating that best reflects the capability established by the supplied evidence according to the locked codebook:
+        </p>
+
+        <div class="rating-options-grid">
+          <button type="button" class="rating-btn" data-rating="2" onclick="app.selectRating('2')">
+            <div class="rating-score-badge">2 — Fully documented</div>
+            <div class="rating-score-desc">Fully documented, repeatable, auditable operational capability.</div>
+          </button>
+          <button type="button" class="rating-btn" data-rating="1" onclick="app.selectRating('1')">
+            <div class="rating-score-badge">1 — Partially documented</div>
+            <div class="rating-score-desc">Documented but partial, limited, or indirect evidence.</div>
+          </button>
+          <button type="button" class="rating-btn" data-rating="0" onclick="app.selectRating('0')">
+            <div class="rating-score-badge">0 — Documented absence</div>
+            <div class="rating-score-desc">Evidence explicitly supports absence/non-use in scope.</div>
+          </button>
+          <button type="button" class="rating-btn" data-rating="NR" onclick="app.selectRating('NR')">
+            <div class="rating-score-badge">NR — Not reported</div>
+            <div class="rating-score-desc">Capability is not established in supplied evidence.</div>
+          </button>
+        </div>
+
+        <div class="form-group" style="margin-top: 1.5rem;">
+          <label for="inputRationale">Briefly explain the reason for your rating: *</label>
+          <textarea id="inputRationale" rows="3" placeholder="Provide a concise explanation grounded in the supplied excerpt..."></textarea>
+        </div>
+
+        <div class="form-group">
+          <label for="inputEvidenceLocator">Evidence Locator (Prepopulated or relied upon):</label>
+          <input type="text" id="inputEvidenceLocator" placeholder="e.g. Section 4.2, p. 18">
+        </div>
+
+        <!-- Ambiguity / Difficulty Flag -->
+        <div class="ambiguity-section">
+          <label class="checkbox-label">
+            <input type="checkbox" id="checkAmbiguityFlag" onchange="app.toggleAmbiguityNote()">
+            <span>⚑ This case was difficult or ambiguous to interpret</span>
+          </label>
+          <div id="ambiguityNoteContainer" style="display: none; margin-top: 0.75rem;">
+            <label for="inputAmbiguityNote" style="font-size: 0.85rem; font-weight: 600; color: #7c2d12;">What made this case difficult?</label>
+            <input type="text" id="inputAmbiguityNote" placeholder="e.g., Contradictory wording between sections, unclear scope...">
+          </div>
+        </div>
+
+        <!-- Case Action Navigation -->
+        <div class="case-actions-nav">
+          <button type="button" id="btnPrevCase" class="btn btn-secondary" onclick="app.prevCase()">
+            ← Previous
+          </button>
+          <button type="button" id="btnNextCase" class="btn btn-primary" onclick="app.nextCase()">
+            Save & Continue →
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- Screen 6: Final Review -->
+    <section id="screenFinalReview" class="card screen-section" style="display: none;">
+      <h2>Your Review Is Complete</h2>
+      <p>Thank you for completing all case evaluations. Please verify your completion status below:</p>
+
+      <div style="background: #f0fdf4; border: 1px solid #bbf7d0; border-radius: var(--radius-md); padding: 1.5rem; margin-bottom: 2rem;">
+        <ul style="list-style-type: none; display: flex; flex-direction: column; gap: 0.75rem; color: #166534; font-weight: 500;">
+          <li>✓ Reviewer information completed</li>
+          <li>✓ Independence declaration completed</li>
+          <li>✓ <span id="finalCompletedCount">72</span> of 72 assessments completed</li>
+          <li>✓ Required rationales completed</li>
+        </ul>
+      </div>
+
+      <div style="display: flex; gap: 1rem; margin-bottom: 2rem; flex-wrap: wrap;">
+        <button type="button" class="btn btn-secondary" onclick="app.reviewFlagged()">
+          Review Flagged Cases (<span id="flaggedCasesCount">0</span>)
+        </button>
+        <button type="button" class="btn btn-secondary" onclick="app.goToCase(1)">
+          Review All Cases (from Case 1)
+        </button>
+      </div>
+
+      <div class="form-group" style="background: #f8fafc; border: 1px solid var(--border-color); padding: 1.25rem; border-radius: var(--radius-md);">
+        <label class="checkbox-label" style="color: var(--wvu-blue);">
+          <input type="checkbox" id="checkFinalConfirm" style="width: auto; margin-right: 0.5rem;">
+          <strong>I confirm that these ratings represent my independent assessment based only on the supplied materials.</strong>
+        </label>
+        <p style="margin-top: 0.5rem; font-size: 0.85rem; color: var(--text-muted); margin-bottom: 0;">
+          Once submitted, your review will be locked and cannot be edited unless the research team formally reopens it.
+        </p>
+      </div>
+
+      <div style="margin-top: 1.5rem; text-align: right;">
+        <button type="button" id="btnSubmitFinal" class="btn btn-gold btn-large" style="font-size: 1.1rem; padding: 0.85rem 2rem;">
+          Submit Final Independent Review
+        </button>
+      </div>
+    </section>
+
+    <!-- Screen 7: Final Thank-You Screen -->
+    <section id="screenThankYou" class="card screen-section" style="display: none; text-align: center; padding: 3rem 2rem;">
+      <div style="font-size: 3rem; color: var(--wvu-gold); margin-bottom: 1rem;">✓</div>
+      <h2>Thank You for Your Contribution</h2>
+      <h3 style="color: var(--success); margin-bottom: 1.5rem;">Your independent review has been successfully submitted.</h3>
+      <p style="max-width: 650px; margin: 0 auto 1.25rem;">
+        Thank you very much for the time, attention, and professional judgment you contributed to this study.
+      </p>
+      <p style="max-width: 650px; margin: 0 auto 1.25rem;">
+        Your independent assessment is an important part of the research and will help strengthen the <strong>clarity, credibility, and methodological quality</strong> of the proposed framework.
+      </p>
+      <p><strong>We sincerely appreciate your expertise and support.</strong></p>
+      <p style="margin-top: 1rem;">
+        <strong>Bilal Al-Oubaidi</strong><br>
+        Ph.D. Student, Civil Engineering<br>
+        West Virginia University
+      </p>
+
+      <div style="margin: 2rem auto; max-width: 500px; background: #f8fafc; border: 1px solid var(--border-color); border-radius: var(--radius-md); padding: 1.25rem;">
+        <div style="font-size: 0.85rem; color: var(--text-muted); text-transform: uppercase; font-weight: 700;">Submission Reference ID</div>
+        <div id="displayReviewerId" style="font-size: 1.5rem; font-weight: 700; color: var(--wvu-blue); margin: 0.25rem 0;">IR---</div>
+        <div style="font-size: 0.8rem; color: var(--text-muted); word-break: break-all;">
+          Hash: <span id="displaySubmissionHash">—</span>
+        </div>
+      </div>
+
+      <div style="color: #166534; font-weight: 600; margin-bottom: 1.5rem;">
+        ✓ Your responses have been securely recorded. No further action is required.
+      </div>
+      <p style="font-size: 0.9rem; color: var(--text-muted);">You may now safely close this page.</p>
+    </section>
+
+  </main>
+
+  <!-- Codebook Drawer -->
+  <div id="codebookBackdrop" class="drawer-backdrop"></div>
+  <aside id="codebookDrawer" class="codebook-drawer">
+    <div class="drawer-header">
+      <h3>Locked Coding Guide</h3>
+      <button id="btnCloseCodebook" class="drawer-close-btn">&times;</button>
+    </div>
+    <div id="codebookContent" class="drawer-content">
+      <h4>Rating Scale Definitions</h4>
+      <p><strong>2 — Fully documented:</strong> A fully documented, repeatable, auditable operational capability according to the locked codebook.</p>
+      <p><strong>1 — Partially documented:</strong> Documented but partial, limited, or indirect evidence according to the locked codebook.</p>
+      <p><strong>0 — Explicitly documented absence/non-use:</strong> Use only where the supplied evidence explicitly supports absence or non-use within the defined scope.</p>
+      <p><strong>NR — Not reported / not established:</strong> The capability is not established in the supplied evidence.</p>
+      
+      <hr style="margin: 1.5rem 0; border: none; border-top: 1px solid var(--border-light);">
+      
+      <h4>Core Principle</h4>
+      <p><strong>NR is not the same as 0.</strong> Do not infer non-use simply because a capability was omitted or silent in the reviewed document.</p>
+      
+      <div id="dynamicCodebookDetails">
+        <!-- Dynamic codebook articles will load here -->
+      </div>
+    </div>
+  </aside>
+
+  <!-- Cases Navigator Modal -->
+  <div id="casesNavBackdrop" class="drawer-backdrop"></div>
+  <aside id="casesNavDrawer" class="codebook-drawer" style="width: 420px;">
+    <div class="drawer-header">
+      <h3>Case Navigator</h3>
+      <button id="btnCloseCasesNav" class="drawer-close-btn">&times;</button>
+    </div>
+    <div class="drawer-content">
+      <p style="font-size: 0.85rem; color: var(--text-muted);">
+        Select any case to review or edit your assessment:
+      </p>
+      <div style="display: flex; gap: 0.75rem; font-size: 0.75rem; margin-bottom: 1rem;">
+        <span><span style="color:#166534">■</span> Done</span>
+        <span><span style="color:var(--wvu-blue)">■</span> Current</span>
+        <span><span style="color:#94a3b8">■</span> Pending</span>
+        <span><span style="color:#d97706">⚑</span> Flagged</span>
+      </div>
+      <div id="casesNavGrid" class="cases-grid-overview">
+        <!-- 72 case buttons populated dynamically -->
+      </div>
+    </div>
+  </aside>
+
+  <!-- Footer -->
+  <footer class="app-footer">
+    <div>
+      <strong>Research contact:</strong> Bilal Al-Oubaidi · <a href="mailto:bia00002@mix.wvu.edu">bia00002@mix.wvu.edu</a><br>
+      Ph.D. Student, Civil Engineering · West Virginia University
+    </div>
+  </footer>
+
+  <script src="app.js"></script>
+</body>
+</html>
